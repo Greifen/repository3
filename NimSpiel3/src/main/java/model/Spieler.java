@@ -3,6 +3,8 @@ package model;
 public class Spieler {
 	
 	protected Schachtel schachtel;
+
+
 	protected String name ;
 	
 	/**
@@ -60,4 +62,15 @@ public class Spieler {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	
+	
+	
+	
+	
+	public Schachtel getSchachtel() {
+		return schachtel;
+	}
+
+	
 }
