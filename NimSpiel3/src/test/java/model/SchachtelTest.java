@@ -1,13 +1,14 @@
 package model;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+
 
 import org.junit.Before;
 import org.junit.jupiter.api.DisplayName;
+
+import static org.assertj.core.api.Assertions.*;
 
 
 public class SchachtelTest {
@@ -22,37 +23,37 @@ public class SchachtelTest {
     @Test
     @DisplayName("Teste befuelle Methode für korrekte Anzahl von Holzstücken")
     public void testBefuelleKorrekteAnzahl() {
-        assertEquals(0, schachtel.befuelle(20));
-        assertEquals(20, schachtel.getAnzahlHoelzer());
+        assertThat(schachtel.befuelle(20)).isEqualTo(0);
+        assertThat(schachtel.getAnzahlHoelzer()).isEqualTo(20);
     }
 
     @Test
     @DisplayName("Teste befuelle Methode für zu viele Holzstücke")
     public void testBefuelleZuVieleHolzstuecke() {
-        assertEquals(1, schachtel.befuelle(50));
-        assertEquals(0, schachtel.getAnzahlHoelzer()); // Die Anzahl der Holzstücke sollte unverändert bleiben
+        assertThat(schachtel.befuelle(50)).isEqualTo(1); // Erwartet eine Fehlermeldung
+        assertThat(schachtel.getAnzahlHoelzer()).isEqualTo(0); // Die Anzahl der Holzstücke sollte unverändert bleiben
     }
 
     @Test
     @DisplayName("Teste befuelle Methode für zu wenige Holzstücke")
     public void testBefuelleZuWenigeHolzstuecke() {
-        assertEquals(1, schachtel.befuelle(5));
-        assertEquals(0, schachtel.getAnzahlHoelzer()); // Die Anzahl der Holzstücke sollte unverändert bleiben
+        assertThat(schachtel.befuelle(5)).isEqualTo(1); // Erwartet eine Fehlermeldung
+        assertThat(schachtel.getAnzahlHoelzer()).isEqualTo(0); // Die Anzahl der Holzstücke sollte unverändert bleiben
     }
 
     @Test
     @DisplayName("Teste setAnzahlHoelzer und getAnzahlHoelzer Methoden")
     public void testSetGetAnzahlHoelzer() {
         schachtel.setAnzahlHoelzer(10);
-        assertEquals(10, schachtel.getAnzahlHoelzer());
+        assertThat(schachtel.getAnzahlHoelzer()).isEqualTo(10);
     }
 
     @Test
     @DisplayName("Teste befuelle Methode für korrekte Rückgabewerte")
     public void testBefuelleRueckgabewerte() {
-        assertEquals(0, schachtel.befuelle(20)); // Erfolgreich befüllt
-        assertEquals(1, schachtel.befuelle(50)); // Zu viele Holzstücke
-        assertEquals(1, schachtel.befuelle(5)); // Zu wenige Holzstücke
+        assertThat(schachtel.befuelle(20)).isEqualTo(0); // Erfolgreich befüllt
+        assertThat(schachtel.befuelle(50)).isEqualTo(1); // Zu viele Holzstücke
+        assertThat(schachtel.befuelle(5)).isEqualTo(1); // Zu wenige Holzstücke
     }
 
     @Test

@@ -1,7 +1,7 @@
 package model;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+
+import static org.assertj.core.api.Assertions.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -24,7 +24,7 @@ public class ComputerdTest {
         schachtel.setAnzahlHoelzer(5);
         computerd.nehmen();
         int restHoelzer = schachtel.getAnzahlHoelzer();
-        assertTrue(restHoelzer >= 1 && restHoelzer <= 3);
+        assertThat(restHoelzer).isBetween(1, 3);
     }
     
     @Test
@@ -32,7 +32,7 @@ public class ComputerdTest {
     public void testComputerdNehmenLeereSchachtel() {
         schachtel.setAnzahlHoelzer(0);
         computerd.nehmen();
-        assertEquals(0, schachtel.getAnzahlHoelzer());
+        assertThat(schachtel.getAnzahlHoelzer()).isEqualTo(0);
     }
 
 }
