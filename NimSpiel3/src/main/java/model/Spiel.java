@@ -21,7 +21,8 @@ public class Spiel {
 		super();
 		this.schachtel = new Schachtel();
 		this.spieler1 = new Spieler(schachtel, "Spieler 1");
-		this.spieler2 = new Spieler(schachtel, "Spieler 2");
+//		this.spieler2 = new Spieler(schachtel, "Spieler 2");
+		this.spieler2= new Computerd(schachtel, "Computer");
 		aktuellerSpieler=spieler1;
 	}
 	
@@ -60,8 +61,8 @@ public class Spiel {
 		//TODO: Fehler, wenn Namen aus mehr als einem Wort besteht.
 		System.out.print("Spieler 1: ");
 		spieler1.setName(s.next());
-		System.out.print("Spieler 2: ");
-		spieler2.setName(s.next());
+//		System.out.print("Spieler 2: ");
+//		spieler2.setName(s.next());
 
 		//gibSpielanleitungAus
 		System.out.println("NIM-Spiel: "+ getAktuellerSpieler().getName() + " setzt die Anzahl der Hoelzer fest. Anschließend werden abwechselnd 1-3 Hoelzer genommen. Wer das letzte Holz zieht verliert.");
@@ -75,16 +76,18 @@ public class Spiel {
 		waechselAktuellenSpieler(getSpieler());
 		
 		//nehmen
-		while (!istBeendet())
-		{
-			System.out.println(getAktuellerSpieler().getName() + ": Wähle eine Zahl von 1-3 zum Nehmen aus der Schachtel, falls noch genügend Hoelzer vorhanden sind.");
-			do 
-			{
-				userEingabe = s.nextInt();
-			} while (getAktuellerSpieler().nehmen(userEingabe)!=0);
-			waechselAktuellenSpieler(getAktuellerSpieler());
-			getSchachtel().print();
-		}
+        while (!istBeendet()) {
+            if (aktuellerSpieler instanceof Computerd) {
+            	System.out.println(getAktuellerSpieler().getName() + " nimmt " + ((Computerd) getAktuellerSpieler()).nehmen() + " Hoelzer.");
+            } else {
+                System.out.println(getAktuellerSpieler().getName() + ": Wähle eine Zahl von 1-3 zum Nehmen aus der Schachtel, falls noch genügend Hoelzer vorhanden sind.");
+                do {
+                    userEingabe = s.nextInt();
+                } while (getAktuellerSpieler().nehmen(userEingabe) != 0);
+            }
+            waechselAktuellenSpieler(getAktuellerSpieler());
+            getSchachtel().print();
+        }
 		
 		//gibGewinnerAn
 		System.out.println(getAktuellerSpieler().getName() +" hat gewonnen.");
