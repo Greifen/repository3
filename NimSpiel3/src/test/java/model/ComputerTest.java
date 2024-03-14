@@ -7,22 +7,22 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 
-public class ComputerdTest {
+public class ComputerTest {
 
     private Schachtel schachtel;
-    private Computerd computerd;
+    private Computer computer;
 
     @Before
     public void setUp() {
         schachtel = new Schachtel();
-        computerd = new Computerd(schachtel);
+        computer = new Computer(schachtel, "Computer");
     }
 
     @Test
     @DisplayName("Teste nehmen Methode für korrekte Anzahl von Holzstücken")
     public void testComputerdNehmen() {
         schachtel.setAnzahlHoelzer(5);
-        computerd.nehmen();
+        computer.nehmen();
         int restHoelzer = schachtel.getAnzahlHoelzer();
         assertThat(restHoelzer).isBetween(1, 3);
     }
@@ -31,7 +31,7 @@ public class ComputerdTest {
     @DisplayName("Teste nehmen Methode für leere Schachtel")
     public void testComputerdNehmenLeereSchachtel() {
         schachtel.setAnzahlHoelzer(0);
-        computerd.nehmen();
+        computer.nehmen();
         assertThat(schachtel.getAnzahlHoelzer()).isEqualTo(0);
     }
 

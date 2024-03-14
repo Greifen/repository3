@@ -53,7 +53,6 @@ public class Spieler {
 	 *
 	 */
 	
-	
 	public String getName() {
 		return name;
 	}
@@ -62,11 +61,6 @@ public class Spieler {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	
-	
-	
-	
 	
 	public Schachtel getSchachtel() {
 		return schachtel;

@@ -48,8 +48,8 @@ public class SpielTest {
     public void testComputerdNehmen() {
         Schachtel schachtel = new Schachtel();
         schachtel.setAnzahlHoelzer(5);
-        Spieler computerspieler = new Computerd(schachtel);
-        ((Computerd) computerspieler).nehmen();
+        Spieler computerspieler = new Computer(schachtel, "Computer");
+        ((Computer) computerspieler).nehmen();
         int restHoelzer = schachtel.getAnzahlHoelzer();
         assertThat(restHoelzer).isBetween(1, 3);
     }

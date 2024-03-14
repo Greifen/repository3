@@ -22,7 +22,7 @@ public class Spiel {
 		this.schachtel = new Schachtel();
 		this.spieler1 = new Spieler(schachtel, "Spieler 1");
 //		this.spieler2 = new Spieler(schachtel, "Spieler 2");
-		this.spieler2= new Computerd(schachtel, "Computer");
+		this.spieler2= new Computer(schachtel, "Computer");
 		aktuellerSpieler=spieler1;
 	}
 	
@@ -77,8 +77,8 @@ public class Spiel {
 		
 		//nehmen
         while (!istBeendet()) {
-            if (aktuellerSpieler instanceof Computerd) {
-            	System.out.println(getAktuellerSpieler().getName() + " nimmt " + ((Computerd) getAktuellerSpieler()).nehmen() + " Hoelzer.");
+            if (aktuellerSpieler instanceof Computer) {
+            	System.out.println(getAktuellerSpieler().getName() + " nimmt " + ((Computer) getAktuellerSpieler()).nehmen() + " Hoelzer.");
             } else {
                 System.out.println(getAktuellerSpieler().getName() + ": Wähle eine Zahl von 1-3 zum Nehmen aus der Schachtel, falls noch genügend Hoelzer vorhanden sind.");
                 do {

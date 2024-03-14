@@ -3,12 +3,14 @@ package model;
 /**
  * Computer ist dumm und wählt zufällig eine Anzahl von Hoelzern von 1 bis 3 aus.
  */
-public class Computerd extends Spieler{
+public class Computer extends Spieler{
 
+	protected int zug;
+	
 	/**
 	 * @param schachtel
 	 */
-	public Computerd(Schachtel schachtel, String name) {
+	public Computer(Schachtel schachtel, String name) {
 		super(schachtel, name);
 	}
 	
@@ -19,12 +21,13 @@ public class Computerd extends Spieler{
 	public int nehmen()
 	{
 		if(schachtel.getAnzahlHoelzer()<3) {
-			nehmen(1);
-			return 1;
+			zug = 1;
 		}
-			
-		int anzahlHoelzer=(int) (Math.random()*3+1);
-		nehmen(anzahlHoelzer);
-		return anzahlHoelzer;
+		else
+		{
+			zug =(int) (Math.random()*3+1);
+		}	
+		nehmen(zug);
+		return zug;
 	}
 }
