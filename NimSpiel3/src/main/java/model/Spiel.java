@@ -1,5 +1,8 @@
 package model;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -28,6 +31,34 @@ public class Spiel {
 	
 	
 	public static void main(String[] args) {
+		
+        // Überprüfe, ob ein Befehlszeilenparameter übergeben wurde und ob es sich um "-h" handelt
+        if (args.length > 0 && args[0].equals("-h")) {
+            //TODO: // Pfad zur Anleitungsdatei (NimSpiel3 finde ich nicht seit es im Repository3 ist)
+            String anleitungDateiName = "C:\\Users\\karin\\eclipse-workspace\\Anleitung.txt";
+        	//TODO: Diese f**** S***** will nicht als relativer Pfad funktionieren
+        	//String anleitungDateiName = "main\\resources\\Anleitung.txt";
+            // Erstelle ein neues File-Objekt mit dem Dateinamen der Anleitung
+            File anleitungDatei = new File(anleitungDateiName);
+
+            try {
+                // Überprüfe, ob Desktop-Support verfügbar ist
+                if (Desktop.isDesktopSupported()) {
+                    // Hole das Desktop-Objekt
+                    Desktop desktop = Desktop.getDesktop();
+                    // Öffne die Anleitung mit dem Standardprogramm
+                    desktop.open(anleitungDatei);
+                } else {
+                    System.out.println("Desktop-Support ist nicht verfügbar.");
+                    // Hier könntest du eine alternative Methode implementieren, um die Anleitung zu öffnen
+                }
+            } catch (IOException e) {
+                System.out.println("Fehler beim Öffnen der Anleitung: " + e.getMessage());
+            }
+        }
+		
+		
+		
 //		new Spiel().starteStatisch();
 		new Spiel().starteKonsole();
 
