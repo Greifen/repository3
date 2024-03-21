@@ -22,7 +22,7 @@ public class Spiel {
 		this.schachtel = new Schachtel();
 		this.spieler1 = new Spieler(schachtel, "Spieler 1");
 //		this.spieler2 = new Spieler(schachtel, "Spieler 2");
-		this.spieler2= new Computer(schachtel, "Computer");
+		this.spieler2= new OptimalerComputer(schachtel, "Computer");
 		aktuellerSpieler=spieler1;
 	}
 	

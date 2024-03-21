@@ -12,14 +12,16 @@ public class OptimalerComputer extends Computer{
 	 */
 	public int nehmen()
 	{
-		if(schachtel.getAnzahlHoelzer()<3) {
-			zug = 1;
+		zug= (schachtel.getAnzahlHoelzer()+3)%4;
+		if((schachtel.getAnzahlHoelzer()+3)%4==0) {
+			//zufällig wie Computer Oberklasse
+			super.nehmen();
 		}
 		else
 		{
-			zug =(int) (Math.random()*3+1);
+			//optimal
+			nehmen(zug);
 		}	
-		nehmen(zug);
 		return zug;
 	}
 }
