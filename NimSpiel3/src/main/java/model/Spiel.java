@@ -34,10 +34,11 @@ public class Spiel {
 		
         // Überprüfe, ob ein Befehlszeilenparameter übergeben wurde und ob es sich um "-h" handelt
         if (args.length > 0 && args[0].equals("-h")) {
-            //TODO: // Pfad zur Anleitungsdatei (NimSpiel3 finde ich nicht seit es im Repository3 ist)
-            String anleitungDateiName = "C:\\Users\\karin\\eclipse-workspace\\Anleitung.txt";
-        	//TODO: Diese f**** S***** will nicht als relativer Pfad funktionieren
-        	//String anleitungDateiName = "main\\resources\\Anleitung.txt";
+            // Pfad zur Anleitungsdatei
+        		//TODO: Diese f**** S***** will nicht als relativer Pfad funktionieren
+        		//String anleitungDateiName = "main\\resources\\Anleitung.txt";
+            String anleitungDateiName = "C:\\Users\\karin\\git\\repository3\\NimSpiel3\\src\\main\\resources\\Anleitung.txt";
+        	
             // Erstelle ein neues File-Objekt mit dem Dateinamen der Anleitung
             File anleitungDatei = new File(anleitungDateiName);
 
