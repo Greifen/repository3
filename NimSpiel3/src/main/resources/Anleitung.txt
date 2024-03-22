@@ -1,3 +1,9 @@
+-h Hilfe /Anleitung
+-m zweiter menschlicher Gegenspieler
+-d dummer Computerspieler (spielt zufällig)
+-o optimaler Computerspieler (spielt mit der optimalen Gewinnstrategie)
+
+
 Soll ich eine Spielanleitung sein?
 
 Gewinn einfach!

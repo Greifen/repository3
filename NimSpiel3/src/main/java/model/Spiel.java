@@ -20,12 +20,24 @@ public class Spiel {
 	 * @param spieler2
 	 * @param schachtel
 	 */
-	public Spiel() {
+	public Spiel(String spieler) {
 		super();
 		this.schachtel = new Schachtel();
 		this.spieler1 = new Spieler(schachtel, "Spieler 1");
+
+		if (spieler.equals("-m"))
+		{
+			this.spieler2 = new Spieler(schachtel, "Spieler 2");
+		} else if(spieler.equals("-d"))
+		{
+			this.spieler2 = new Computer(schachtel, "dummer Computer");
+		}
+		else if (spieler.equals("-o"))
+		{
+			this.spieler2 = new OptimalerComputer(schachtel, "optimaler Computer");
+		}
+		
 //		this.spieler2 = new Spieler(schachtel, "Spieler 2");
-		this.spieler2= new Computer(schachtel, "Computer");
 		aktuellerSpieler=spieler1;
 	}
 	
@@ -56,14 +68,17 @@ public class Spiel {
             } catch (IOException e) {
                 System.out.println("Fehler beim Öffnen der Anleitung: " + e.getMessage());
             }
+            
+        } else if(args.length == 0) {
+        	new Spiel(args[0]).starteKonsole();
+        	
+        } else {
+    	//TODO: Fehler abfangen, wenn Konsoleneingabe falsch, wenn mehr als ein Argument oder gar keins (reicht das?)
+        	System.out.println("Führe Programm mit Hilfe aus -h");
         }
-		
-		
-		
+        
 //		new Spiel().starteStatisch();
-		new Spiel().starteKonsole();
 
-	
 	}
 	
 	public Spieler getAktuellerSpieler() {
@@ -93,8 +108,12 @@ public class Spiel {
 		//TODO: Fehler, wenn Namen aus mehr als einem Wort besteht.
 		System.out.print("Spieler 1: ");
 		spieler1.setName(s.next());
-//		System.out.print("Spieler 2: ");
-//		spieler2.setName(s.next());
+		
+		if (!(spieler2 instanceof Computer)) {
+			System.out.print("Spieler 2: ");
+			spieler2.setName(s.next());
+        } 
+
 
 		//gibSpielanleitungAus
 		System.out.println("NIM-Spiel: "+ getAktuellerSpieler().getName() + " setzt die Anzahl der Hoelzer fest. Anschließend werden abwechselnd 1-3 Hoelzer genommen. Wer das letzte Holz zieht verliert.");
