@@ -30,11 +30,11 @@ public class Spiel {
 			this.spieler2 = new Spieler(schachtel, "Spieler 2");
 		} else if(spieler.equals("-d"))
 		{
-			this.spieler2 = new Computer(schachtel, "dummer Computer");
+			this.spieler2 = new Computer(schachtel, "Dummer Computer");
 		}
 		else if (spieler.equals("-o"))
 		{
-			this.spieler2 = new OptimalerComputer(schachtel, "optimaler Computer");
+			this.spieler2 = new OptimalerComputer(schachtel, "Optimaler Computer");
 		}
 		
 //		this.spieler2 = new Spieler(schachtel, "Spieler 2");
@@ -69,7 +69,7 @@ public class Spiel {
                 System.out.println("Fehler beim Öffnen der Anleitung: " + e.getMessage());
             }
             
-        } else if(args.length == 0) {
+        } else if(args.length == 1) {
         	new Spiel(args[0]).starteKonsole();
         	
         } else {
@@ -125,6 +125,7 @@ public class Spiel {
 			userEingabe = s.nextInt();
 		} while (getSchachtel().befuelle(userEingabe)!=0);
 		waechselAktuellenSpieler(getSpieler());
+		getSchachtel().print();
 		
 		//nehmen
         while (!istBeendet()) {
