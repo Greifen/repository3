@@ -119,7 +119,7 @@ public class Spiel {
 		System.out.println("NIM-Spiel: "+ getAktuellerSpieler().getName() + " setzt die Anzahl der Hoelzer fest. Anschließend werden abwechselnd 1-3 Hoelzer genommen. Wer das letzte Holz zieht verliert.");
 		
 		//befülleSchachtel
-		System.out.println(getAktuellerSpieler().getName() + ": Wähle eine Zahl von 10-40 zum Befüllen der Schachtel.");
+		System.out.println(getAktuellerSpieler().getName() + ": Wähle eine Zahl von 10-40 Hoelzer zum Befüllen der Schachtel.");
 		do 
 		{
 			userEingabe = s.nextInt();
@@ -130,7 +130,14 @@ public class Spiel {
 		//nehmen
         while (!istBeendet()) {
             if (aktuellerSpieler instanceof Computer) {
-            	System.out.println(getAktuellerSpieler().getName() + " nimmt " + ((Computer) getAktuellerSpieler()).nehmen() + " Hoelzer.");
+            	if (((Computer) getAktuellerSpieler()).nehmen()==1)
+            	{
+            		System.out.println(getAktuellerSpieler().getName() + " nimmt ein Hoelzchen.");
+            	}
+            	else
+            	{
+             		System.out.println(getAktuellerSpieler().getName() + " nimmt " + ((Computer) getAktuellerSpieler()).getZug() + " Hoelzer.");
+            	}
             } else {
                 System.out.println(getAktuellerSpieler().getName() + ": Wähle eine Zahl von 1-3 zum Nehmen aus der Schachtel, falls noch genügend Hoelzer vorhanden sind.");
                 do {

@@ -7,7 +7,6 @@ public class OptimalerComputer extends Computer{
 	}
 
 	/**
-	 * 
 	 * @return optimaler Anzahl an gezogenen Hoelzern, wenn möglich
 	 */
 	public int nehmen()

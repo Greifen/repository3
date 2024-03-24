@@ -30,4 +30,14 @@ public class Computer extends Spieler{
 		nehmen(zug);
 		return zug;
 	}
+
+	/**
+	 * TODO:soll ich sowas überhaupt erlauben
+	 * @return Anzahl der Hoelzer die im aktuellen Zug gezogen wurden.
+	 */
+	public int getZug() {
+		return zug;
+	}
+
+	
 }
