@@ -153,6 +153,26 @@ public class Spiel {
 	}
 	
 
+	public Spieler getSpieler() {
+		return spieler1;
+	}
+
+	public Spieler getSpieler2() {
+		return spieler2;
+	}
+
+	public Schachtel getSchachtel() {
+		return schachtel;
+	}
+	
+	/**
+	 * Das Spiel ist erst beendet, wenn alle Hoelzer aus der Schachtel genommen wurden.
+	 * @return
+	 */
+	public boolean istBeendet() {
+		return getSchachtel().getAnzahlHoelzer() == 0;
+	}
+	
 	/**
 	 * Testrun statisch ohne View
 	 */
@@ -178,25 +198,5 @@ public class Spiel {
 		getSpieler2().nehmen(3);
 		
 		System.out.println("Nachdem Spieler1 3 Hoelzer nimmt " +getSchachtel().getAnzahlHoelzer());
-	}
-
-	public Spieler getSpieler() {
-		return spieler1;
-	}
-
-	public Spieler getSpieler2() {
-		return spieler2;
-	}
-
-	public Schachtel getSchachtel() {
-		return schachtel;
-	}
-	
-	/**
-	 * Das Spiel ist erst beendet, wenn alle Hoelzer aus der Schachtel genommen wurden.
-	 * @return
-	 */
-	public boolean istBeendet() {
-		return getSchachtel().getAnzahlHoelzer() == 0;
 	}
 }

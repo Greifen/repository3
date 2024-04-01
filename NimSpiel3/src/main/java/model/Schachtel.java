@@ -31,10 +31,20 @@ public class Schachtel {
 	}
 	
 	/**
-	 * gibt die Anzhal der Hoelzer in der Schachtel in der Konsole aus.
+	 * gibt die Anzahl der Hoelzer in der Schachtel in der Konsole aus.
 	 * und visuell Striche für Hoelzer.
 	 */
 	public void print() {
+		System.out.println(toString());
+	}
+	
+	/**
+	 *  gibt die Anzahl der Hoelzer in der Schachtel als String aus.
+	 */
+	@Override
+	public String toString() {
+		
+		//Visuell
 		String visuell = "";
 		for (int i = 0; i < anzahlHoelzer; i++) {
 			if(i % 5==0) { //i!=0 && wenn direkt Zeile drunter
@@ -44,30 +54,19 @@ public class Schachtel {
 		} 
 		
 		//Anzahl
-		System.out.print("Anzahl Hoelzer: " + anzahlHoelzer);
-		
-		//Visuell
 		if (anzahlHoelzer <10)
 		{
-			System.out.println(" "+ visuell);
+			return "Anzahl Hoelzer:  " + anzahlHoelzer + visuell;
 		}
 		else {
-			System.out.println(visuell);
+			return "Anzahl Hoelzer: " + anzahlHoelzer + visuell;
 		}
-	}
-	
-	/**
-	 * momentan nicht genutzt
-	 */
-	@Override
-	public String toString() {
-		return "Anzahl Hoelzer: " + anzahlHoelzer;
 	}
 
 	/**
 	 * 
 	 * @param anzahlHoelzer 
-	 * @return 1 Fehlermeldung: Es könnnen nur 10 bis 40 Holzer hineingetan werden
+	 * @return 1 Fehlermeldung: Es könnnen nur 10 bis 40 Holzer hineingetan werden.
 	 * 0 erfolgreich befuellt.
 	 */
 	public int befuelle(int anzahlHoelzer) {
