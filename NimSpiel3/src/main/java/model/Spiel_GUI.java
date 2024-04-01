@@ -149,6 +149,7 @@ public class Spiel_GUI extends JFrame {
 				spieler2.setName(txtSpieler2.getText());
 				getSchachtel().befuelle(Integer.parseInt(txtAnzahlHoelzer.getText()));
 				wechselZug();
+				
 	        	btnZiehe_3.setEnabled(true);
 	    		btnZiehe_2.setEnabled(true);
 	        	btnZiehe_1.setEnabled(true);
