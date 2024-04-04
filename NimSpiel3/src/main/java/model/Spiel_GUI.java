@@ -13,7 +13,9 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
 
 public class Spiel_GUI extends JFrame {
 
@@ -21,7 +23,7 @@ public class Spiel_GUI extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtSpieler1;
 	private JTextField txtSpieler2;
-	private JTextField txtAnzahlHoelzer;
+	private JComboBox cbxAnzahlHoelzer;
 	private JLabel lblZug;
 	private JLabel lblSchachtel;
 	private JLabel lblgezogen;
@@ -121,6 +123,8 @@ public class Spiel_GUI extends JFrame {
 		txtSpieler1.setBounds(178, 35, 96, 20);
 		contentPane.add(txtSpieler1);
 		txtSpieler1.setColumns(10);
+		//TODO: addFocusListener
+		//		txtSpieler1.addFocusListener((FocusListener) this);
 		
 		JLabel lblSpieler = new JLabel("Spieler 2:");
 		lblSpieler.setBounds(10, 67, 105, 14);
@@ -136,18 +140,14 @@ public class Spiel_GUI extends JFrame {
 		lblAnzahlHoelzer.setBounds(10, 92, 158, 14);
 		contentPane.add(lblAnzahlHoelzer);
 		
-		txtAnzahlHoelzer = new JTextField();
-		txtAnzahlHoelzer.setText("40");
-		txtAnzahlHoelzer.setColumns(10);
-		txtAnzahlHoelzer.setBounds(178, 86, 96, 20);
-		contentPane.add(txtAnzahlHoelzer);
 		
 		btnSpiel_starten = new JButton("Spiel starten");
 		btnSpiel_starten.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				spieler1.setName(txtSpieler1.getText());
 				spieler2.setName(txtSpieler2.getText());
-				getSchachtel().befuelle(Integer.parseInt(txtAnzahlHoelzer.getText()));
+				getSchachtel().befuelle(Integer.parseInt(cbxAnzahlHoelzer.getSelectedItem().toString()));
+				
 				wechselZug();
 				
 	        	btnZiehe_3.setEnabled(true);
@@ -172,6 +172,7 @@ public class Spiel_GUI extends JFrame {
 		contentPane.add(lblgezogen);
 		
 		btnZiehe_1 = new JButton("1");
+		btnZiehe_1.setToolTipText("Ziehe ein Streichholz.");
 		btnZiehe_1.setEnabled(false);
 		btnZiehe_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -186,6 +187,7 @@ public class Spiel_GUI extends JFrame {
 		
 		//TODO: Button als Array?
 		btnZiehe_2 = new JButton("2");
+		btnZiehe_2.setToolTipText("Ziehe 2 Streichhölzer.");
 		btnZiehe_2.setEnabled(false);
 		btnZiehe_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -198,6 +200,7 @@ public class Spiel_GUI extends JFrame {
 		contentPane.add(btnZiehe_2);
 		
 		btnZiehe_3 = new JButton("3");
+		btnZiehe_3.setToolTipText("Ziehe 3 Streichhölzer.");
 		btnZiehe_3.setEnabled(false);
 		btnZiehe_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -212,6 +215,23 @@ public class Spiel_GUI extends JFrame {
 		lblnimspielSpieler = new JLabel("NIM-Spiel: Spieler 1 setzt die Anzahl der Hoelzer fest. Anschließend werden abwechselnd 1-3 Hoelzer genommen. Wer das letzte Holz zieht verliert.");
 		lblnimspielSpieler.setBounds(10, 11, 807, 14);
 		contentPane.add(lblnimspielSpieler);
+		
+		//TODO: echt nicht int übergebar?
+		String comboBoxListe[] = {"10", "11",
+	            "12", "13", "14",
+	            "15", "16", "17",
+	            "18", "19", "20",
+	            "21", "22", "23",
+	            "24", "25", "26", "27", "28",
+	            "29", "30", "31",
+	            "31", "32", "33",
+	            "34", "35", "36",
+	            "37", "38", "39", "40"};
+		cbxAnzahlHoelzer = new JComboBox(comboBoxListe);
+		cbxAnzahlHoelzer.setBounds(178, 88, 96, 22);
+		cbxAnzahlHoelzer.setSelectedIndex((int) (Math.random()*30+10));
+		cbxAnzahlHoelzer.setToolTipText("Spieler 1: Wähle eine Zahl von 10-40 Hoelzer zum Befüllen der Schachtel.");
+		contentPane.add(cbxAnzahlHoelzer);
 	}
 	
 	public void wechselZug() {
@@ -237,6 +257,8 @@ public class Spiel_GUI extends JFrame {
     		btnZiehe_2.setEnabled(false);
         	btnZiehe_1.setEnabled(false);
         	btnSpiel_starten.setEnabled(true);
+        	//TODO: checken ob richtig von 0 bis 30 [bzw. 10 bis 40 wenn nicht index] wie testen? (10 beim händischen testen gekommen, 40 noch nicht, aber 38)
+        	cbxAnzahlHoelzer.setSelectedIndex((int) (Math.random()*30));
         }
 	}
 }
