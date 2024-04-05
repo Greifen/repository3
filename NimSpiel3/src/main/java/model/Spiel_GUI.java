@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
@@ -125,6 +126,21 @@ public class Spiel_GUI extends JFrame {
 		txtSpieler1.setColumns(10);
 		//TODO: addFocusListener
 		//		txtSpieler1.addFocusListener((FocusListener) this);
+		txtSpieler1.addFocusListener(new FocusListener(){
+			
+			@Override
+			public void focusGained(FocusEvent e) {
+				txtSpieler1.selectAll();
+				
+			}
+			
+			@Override
+			public void focusLost(FocusEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
 		
 		JLabel lblSpieler = new JLabel("Spieler 2:");
 		lblSpieler.setBounds(10, 67, 105, 14);
@@ -135,6 +151,20 @@ public class Spiel_GUI extends JFrame {
 		txtSpieler2.setColumns(10);
 		txtSpieler2.setBounds(178, 61, 96, 20);
 		contentPane.add(txtSpieler2);
+		txtSpieler2.addFocusListener(new FocusListener(){
+			
+			@Override
+			public void focusGained(FocusEvent e) {
+				txtSpieler2.selectAll();
+				
+			}
+			
+			@Override
+			public void focusLost(FocusEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		
 		JLabel lblAnzahlHoelzer = new JLabel("Anzahl Hoelzer (10-40):");
 		lblAnzahlHoelzer.setBounds(10, 92, 158, 14);
@@ -154,6 +184,9 @@ public class Spiel_GUI extends JFrame {
 	    		btnZiehe_2.setEnabled(true);
 	        	btnZiehe_1.setEnabled(true);
 	        	btnSpiel_starten.setEnabled(false);
+	        	txtSpieler1.setEnabled(false);
+	        	txtSpieler2.setEnabled(false);
+	        	cbxAnzahlHoelzer.setEnabled(false);
 			}
 		});
 		btnSpiel_starten.setBounds(314, 88, 134, 23);
@@ -181,6 +214,9 @@ public class Spiel_GUI extends JFrame {
 				wechselZug();
 			}
 		});
+		
+		
+
 		
 		btnZiehe_1.setBounds(314, 168, 50, 23);
 		contentPane.add(btnZiehe_1);
@@ -212,8 +248,10 @@ public class Spiel_GUI extends JFrame {
 		btnZiehe_3.setBounds(314, 234, 50, 23);
 		contentPane.add(btnZiehe_3);
 		
-		lblnimspielSpieler = new JLabel("NIM-Spiel: Spieler 1 setzt die Anzahl der Hoelzer fest. Anschließend werden abwechselnd 1-3 Hoelzer genommen. Wer das letzte Holz zieht verliert.");
-		lblnimspielSpieler.setBounds(10, 11, 807, 14);
+		lblnimspielSpieler = new JLabel("<html><body>Textzeile1<br>Textzeile2</body></html>");
+		
+	//	lblnimspielSpieler = new JLabel("NIM-Spiel: Spieler 1 setzt die Anzahl der Hoelzer fest. Anschließend werden abwechselnd 1-3 Hoelzer genommen. Wer das letzte Holz zieht verliert.");
+		lblnimspielSpieler.setBounds(10, 0, 807, 30);
 		contentPane.add(lblnimspielSpieler);
 		
 		//TODO: echt nicht int übergebar?
@@ -257,6 +295,10 @@ public class Spiel_GUI extends JFrame {
     		btnZiehe_2.setEnabled(false);
         	btnZiehe_1.setEnabled(false);
         	btnSpiel_starten.setEnabled(true);
+        	txtSpieler1.setEnabled(true);
+        	txtSpieler2.setEnabled(true);
+        	cbxAnzahlHoelzer.setEnabled(true);
+        	
         	//TODO: checken ob richtig von 0 bis 30 [bzw. 10 bis 40 wenn nicht index] wie testen? (10 beim händischen testen gekommen, 40 noch nicht, aber 38)
         	cbxAnzahlHoelzer.setSelectedIndex((int) (Math.random()*30));
         }
