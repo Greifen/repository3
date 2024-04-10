@@ -15,6 +15,9 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.beans.EventHandler;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 
@@ -38,7 +41,6 @@ public class Spiel_GUI extends JFrame {
 	private Spieler aktuellerSpieler;
 	private JLabel lblnimspielSpieler;
 
-	
 	
 	public Spieler getAktuellerSpieler() {
 		return aktuellerSpieler;
@@ -116,12 +118,12 @@ public class Spiel_GUI extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Spieler 1:");
-		lblNewLabel.setBounds(10, 41, 105, 14);
+		lblNewLabel.setBounds(10, 64, 105, 14);
 		contentPane.add(lblNewLabel);
 		
 		txtSpieler1 = new JTextField();
 		txtSpieler1.setText("Spieler 1");
-		txtSpieler1.setBounds(178, 35, 96, 20);
+		txtSpieler1.setBounds(178, 58, 96, 20);
 		contentPane.add(txtSpieler1);
 		txtSpieler1.setColumns(10);
 		//TODO: addFocusListener
@@ -143,13 +145,13 @@ public class Spiel_GUI extends JFrame {
 		
 		
 		JLabel lblSpieler = new JLabel("Spieler 2:");
-		lblSpieler.setBounds(10, 67, 105, 14);
+		lblSpieler.setBounds(10, 90, 105, 14);
 		contentPane.add(lblSpieler);
 		
 		txtSpieler2 = new JTextField();
 		txtSpieler2.setText("Spieler 2");
 		txtSpieler2.setColumns(10);
-		txtSpieler2.setBounds(178, 61, 96, 20);
+		txtSpieler2.setBounds(178, 84, 96, 20);
 		contentPane.add(txtSpieler2);
 		txtSpieler2.addFocusListener(new FocusListener(){
 			
@@ -167,7 +169,7 @@ public class Spiel_GUI extends JFrame {
 		});
 		
 		JLabel lblAnzahlHoelzer = new JLabel("Anzahl Hoelzer (10-40):");
-		lblAnzahlHoelzer.setBounds(10, 92, 158, 14);
+		lblAnzahlHoelzer.setBounds(10, 115, 158, 14);
 		contentPane.add(lblAnzahlHoelzer);
 		
 		
@@ -189,7 +191,7 @@ public class Spiel_GUI extends JFrame {
 	        	cbxAnzahlHoelzer.setEnabled(false);
 			}
 		});
-		btnSpiel_starten.setBounds(314, 88, 134, 23);
+		btnSpiel_starten.setBounds(314, 111, 134, 23);
 		contentPane.add(btnSpiel_starten);
 		
 		lblZug = new JLabel("Spieler 1: Wähle eine Zahl von 1-3 zum Nehmen aus der Schachtel, falls noch genügend Hoelzer vorhanden sind.");
@@ -214,10 +216,37 @@ public class Spiel_GUI extends JFrame {
 				wechselZug();
 			}
 		});
-		
-		
 
 		
+//		Wenn button aktiv dann reagiert er nur auf press :(
+/*		btnZiehe_1.addKeyListener(new KeyListener() {
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				int c = e.getKeyCode();
+		        if(c == KeyEvent.VK_ENTER){//	VK_NUMPAD1 
+		        	getAktuellerSpieler().nehmen(2);
+					lblgezogen.setText("|");
+					wechselZug();
+		        }
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+		});
+*/
+		
+
 		btnZiehe_1.setBounds(314, 168, 50, 23);
 		contentPane.add(btnZiehe_1);
 		
@@ -248,10 +277,8 @@ public class Spiel_GUI extends JFrame {
 		btnZiehe_3.setBounds(314, 234, 50, 23);
 		contentPane.add(btnZiehe_3);
 		
-		lblnimspielSpieler = new JLabel("<html><body>Textzeile1<br>Textzeile2</body></html>");
-		
-	//	lblnimspielSpieler = new JLabel("NIM-Spiel: Spieler 1 setzt die Anzahl der Hoelzer fest. Anschließend werden abwechselnd 1-3 Hoelzer genommen. Wer das letzte Holz zieht verliert.");
-		lblnimspielSpieler.setBounds(10, 0, 807, 30);
+		lblnimspielSpieler = new JLabel("<html><body><FONT COLOR=\"#FF0099\">Spieler 1</FONT> setzt die Anzahl der Hoelzer fest.<br>Anschließend werden abwechselnd 1-3 Hoelzer genommen.<br><b>Wer das letzte Holz zieht verliert.</b></body></html>");
+		lblnimspielSpieler.setBounds(10, 0, 807, 50);
 		contentPane.add(lblnimspielSpieler);
 		
 		//TODO: echt nicht int übergebar?
@@ -266,10 +293,16 @@ public class Spiel_GUI extends JFrame {
 	            "34", "35", "36",
 	            "37", "38", "39", "40"};
 		cbxAnzahlHoelzer = new JComboBox(comboBoxListe);
-		cbxAnzahlHoelzer.setBounds(178, 88, 96, 22);
+		cbxAnzahlHoelzer.setBounds(178, 111, 96, 22);
 		cbxAnzahlHoelzer.setSelectedIndex((int) (Math.random()*30+10));
 		cbxAnzahlHoelzer.setToolTipText("Spieler 1: Wähle eine Zahl von 10-40 Hoelzer zum Befüllen der Schachtel.");
 		contentPane.add(cbxAnzahlHoelzer);
+		
+		
+//		TODO: doof da muss man noch alt+1 drücken		
+		btnZiehe_1.setMnemonic('1');
+		btnZiehe_2.setMnemonic('2');
+		btnZiehe_3.setMnemonic('3');
 	}
 	
 	public void wechselZug() {
@@ -298,9 +331,12 @@ public class Spiel_GUI extends JFrame {
         	txtSpieler1.setEnabled(true);
         	txtSpieler2.setEnabled(true);
         	cbxAnzahlHoelzer.setEnabled(true);
+        	btnSpiel_starten.requestFocusInWindow();
         	
         	//TODO: checken ob richtig von 0 bis 30 [bzw. 10 bis 40 wenn nicht index] wie testen? (10 beim händischen testen gekommen, 40 noch nicht, aber 38)
         	cbxAnzahlHoelzer.setSelectedIndex((int) (Math.random()*30));
+        	
+        	
         }
 	}
 }
