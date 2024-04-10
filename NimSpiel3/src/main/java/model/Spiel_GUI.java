@@ -333,6 +333,7 @@ public class Spiel_GUI extends JFrame {
         	cbxAnzahlHoelzer.setEnabled(true);
         	btnSpiel_starten.requestFocusInWindow();
         	
+        	  
         	//TODO: checken ob richtig von 0 bis 30 [bzw. 10 bis 40 wenn nicht index] wie testen? (10 beim händischen testen gekommen, 40 noch nicht, aber 38)
         	cbxAnzahlHoelzer.setSelectedIndex((int) (Math.random()*30));
         	
