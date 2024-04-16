@@ -22,6 +22,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.JList;
 import javax.swing.JSpinner;
+import java.awt.Color;
+import java.awt.SystemColor;
 
 public class Spiel_GUI extends JFrame {
 
@@ -42,6 +44,7 @@ public class Spiel_GUI extends JFrame {
 	private Spieler spieler2;
 	private Spieler aktuellerSpieler;
 	private JLabel lblnimspielSpieler;
+	private JLabel lblWhleEineZahl;
 
 	
 	public Spieler getAktuellerSpieler() {
@@ -120,10 +123,12 @@ public class Spiel_GUI extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Spieler 1:");
+		lblNewLabel.setForeground(Color.BLACK);
 		lblNewLabel.setBounds(10, 64, 105, 14);
 		contentPane.add(lblNewLabel);
 		
 		txtSpieler1 = new JTextField();
+		txtSpieler1.setForeground(Color.BLUE);
 		txtSpieler1.setText("Spieler 1");
 		txtSpieler1.setBounds(178, 58, 96, 20);
 		contentPane.add(txtSpieler1);
@@ -146,10 +151,12 @@ public class Spiel_GUI extends JFrame {
 		
 		
 		JLabel lblSpieler = new JLabel("Spieler 2:");
+		lblSpieler.setForeground(Color.BLACK);
 		lblSpieler.setBounds(10, 90, 105, 14);
 		contentPane.add(lblSpieler);
 		
 		txtSpieler2 = new JTextField();
+		txtSpieler2.setForeground(Color.RED);
 		txtSpieler2.setText("Spieler 2");
 		txtSpieler2.setColumns(10);
 		txtSpieler2.setBounds(178, 84, 96, 20);
@@ -173,6 +180,10 @@ public class Spiel_GUI extends JFrame {
 		lblAnzahlHoelzer.setBounds(10, 115, 158, 14);
 		contentPane.add(lblAnzahlHoelzer);
 		
+		lblWhleEineZahl = new JLabel("Wähle eine Zahl von 1-3 zum Nehmen aus der Schachtel, falls noch genügend Hoelzer vorhanden sind.");
+		lblWhleEineZahl.setBounds(84, 145, 706, 14);
+		contentPane.add(lblWhleEineZahl);
+		
 		
 		btnSpiel_starten = new JButton("Spiel starten");
 		btnSpiel_starten.addActionListener(new ActionListener() {
@@ -190,13 +201,16 @@ public class Spiel_GUI extends JFrame {
 	        	txtSpieler1.setEnabled(false);
 	        	txtSpieler2.setEnabled(false);
 	        	cbxAnzahlHoelzer.setEnabled(false);
+	        	lblWhleEineZahl.setText("Wähle eine Zahl von 1-3 zum Nehmen aus der Schachtel, falls noch genügend Hoelzer vorhanden sind.");
+	        	
 			}
 		});
 		btnSpiel_starten.setBounds(314, 111, 134, 23);
 		contentPane.add(btnSpiel_starten);
 		
-		lblZug = new JLabel("Spieler 1: Wähle eine Zahl von 1-3 zum Nehmen aus der Schachtel, falls noch genügend Hoelzer vorhanden sind.");
-		lblZug.setBounds(10, 145, 706, 14);
+		lblZug = new JLabel("Spieler 2:");
+		lblZug.setForeground(Color.RED);
+		lblZug.setBounds(10, 145, 100, 14);
 		contentPane.add(lblZug);
 		
 		lblSchachtel = new JLabel("Anzahl Hoelzer: 40 ||||| ||||| ||||| ||||| ||||| ||||| ||||| |||||");
@@ -278,9 +292,10 @@ public class Spiel_GUI extends JFrame {
 		btnZiehe_3.setBounds(314, 234, 50, 23);
 		contentPane.add(btnZiehe_3);
 		
-		lblnimspielSpieler = new JLabel("<html><body><FONT COLOR=\"#FF0099\">Spieler 1</FONT> setzt die Anzahl der Hoelzer fest.<br>Anschließend werden abwechselnd 1-3 Hoelzer genommen.<br><b>Wer das letzte Holz zieht verliert.</b></body></html>");
+//		lblnimspielSpieler = new JLabel("<html><body><FONT COLOR=\"#FF0099\">Spieler 1</FONT> setzt die Anzahl der Hoelzer fest.<br>Anschließend werden abwechselnd 1-3 Hoelzer genommen.<br><b>Wer das letzte Holz zieht verliert.</b></body></html>");
+		lblnimspielSpieler = new JLabel("<html><body><b>Wer das letzte Holz zieht verliert.</b></body></html>");
 		lblnimspielSpieler.setToolTipText("Spieler 1: Wähle eine Zahl von 10-40 Hoelzer zum Befüllen der Schachtel.");
-		lblnimspielSpieler.setBounds(10, 0, 807, 50);
+		lblnimspielSpieler.setBounds(10, 23, 807, 50);
 		contentPane.add(lblnimspielSpieler);
 		
 		//TODO: echt nicht int übergebar?
@@ -309,6 +324,18 @@ public class Spiel_GUI extends JFrame {
 		JList list = new JList();
 		list.setBounds(114, 295, 1, 1);
 		contentPane.add(list);
+		
+
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(619, 168, -396, -35);
+		contentPane.add(panel);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(SystemColor.info);
+		panel_1.setForeground(Color.BLACK);
+		panel_1.setBounds(-21, 140, 931, 23);
+		contentPane.add(panel_1);
 /*		
  //TODO: Was besser Combobox oder Spinner?
 		JSpinner spiAnzahlHoelzer = new JSpinner();
@@ -322,8 +349,14 @@ public class Spiel_GUI extends JFrame {
 		waechselAktuellenSpieler(getAktuellerSpieler());
         lblSchachtel.setText(getSchachtel().toString());
         if (!istBeendet()) {
-        	lblZug.setText(getAktuellerSpieler().getName() + ": Wähle eine Zahl von 1-3 zum Nehmen aus der Schachtel, falls noch genügend Hoelzer vorhanden sind.");
-        	
+        	lblZug.setText(getAktuellerSpieler().getName());
+        	if (getAktuellerSpieler().equals(getSpieler())){
+        		lblZug.setForeground(Color.BLUE);
+        	}
+        	else
+        	{
+        		lblZug.setForeground(Color.RED);
+        	}
         	if (getSchachtel().getAnzahlHoelzer() == 1)
             {
             	btnZiehe_3.setEnabled(false);
@@ -336,7 +369,15 @@ public class Spiel_GUI extends JFrame {
         }
         else
         {
-        	lblZug.setText(getAktuellerSpieler().getName() + " hat gewonnen.");
+        	lblWhleEineZahl.setText("hat gewonnen.");
+        	lblZug.setText(getAktuellerSpieler().getName());
+        	if (getAktuellerSpieler().equals(getSpieler())){
+        		lblZug.setForeground(Color.BLUE);
+        	}
+        	else
+        	{
+        		lblZug.setForeground(Color.RED);
+        	}
         	btnZiehe_3.setEnabled(false);
     		btnZiehe_2.setEnabled(false);
         	btnZiehe_1.setEnabled(false);
