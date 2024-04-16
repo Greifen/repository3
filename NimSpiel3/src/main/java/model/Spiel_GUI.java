@@ -20,6 +20,8 @@ import java.awt.event.KeyListener;
 import java.beans.EventHandler;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
+import javax.swing.JList;
+import javax.swing.JSpinner;
 
 public class Spiel_GUI extends JFrame {
 
@@ -126,8 +128,7 @@ public class Spiel_GUI extends JFrame {
 		txtSpieler1.setBounds(178, 58, 96, 20);
 		contentPane.add(txtSpieler1);
 		txtSpieler1.setColumns(10);
-		//TODO: addFocusListener
-		//		txtSpieler1.addFocusListener((FocusListener) this);
+
 		txtSpieler1.addFocusListener(new FocusListener(){
 			
 			@Override
@@ -278,6 +279,7 @@ public class Spiel_GUI extends JFrame {
 		contentPane.add(btnZiehe_3);
 		
 		lblnimspielSpieler = new JLabel("<html><body><FONT COLOR=\"#FF0099\">Spieler 1</FONT> setzt die Anzahl der Hoelzer fest.<br>Anschließend werden abwechselnd 1-3 Hoelzer genommen.<br><b>Wer das letzte Holz zieht verliert.</b></body></html>");
+		lblnimspielSpieler.setToolTipText("Spieler 1: Wähle eine Zahl von 10-40 Hoelzer zum Befüllen der Schachtel.");
 		lblnimspielSpieler.setBounds(10, 0, 807, 50);
 		contentPane.add(lblnimspielSpieler);
 		
@@ -303,6 +305,17 @@ public class Spiel_GUI extends JFrame {
 		btnZiehe_1.setMnemonic('1');
 		btnZiehe_2.setMnemonic('2');
 		btnZiehe_3.setMnemonic('3');
+		
+		JList list = new JList();
+		list.setBounds(114, 295, 1, 1);
+		contentPane.add(list);
+/*		
+ //TODO: Was besser Combobox oder Spinner?
+		JSpinner spiAnzahlHoelzer = new JSpinner();
+		spiAnzahlHoelzer.setToolTipText("Spieler 1: Wähle eine Zahl von 10-40 Hoelzer zum Befüllen der Schachtel.");
+		spiAnzahlHoelzer.setBounds(459, 112, 57, 20);
+		contentPane.add(spiAnzahlHoelzer);
+		*/
 	}
 	
 	public void wechselZug() {
