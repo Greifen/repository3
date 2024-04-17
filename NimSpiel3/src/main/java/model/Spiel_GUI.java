@@ -45,6 +45,7 @@ public class Spiel_GUI extends JFrame {
 	private Spieler aktuellerSpieler;
 	private JLabel lblnimspielSpieler;
 	private JLabel lblWhleEineZahl;
+	private final JPanel panel_2 = new JPanel();
 
 	
 	public Spieler getAktuellerSpieler() {
@@ -180,10 +181,6 @@ public class Spiel_GUI extends JFrame {
 		lblAnzahlHoelzer.setBounds(10, 115, 158, 14);
 		contentPane.add(lblAnzahlHoelzer);
 		
-		lblWhleEineZahl = new JLabel("Wähle eine Zahl von 1-3 zum Nehmen aus der Schachtel, falls noch genügend Hoelzer vorhanden sind.");
-		lblWhleEineZahl.setBounds(84, 145, 706, 14);
-		contentPane.add(lblWhleEineZahl);
-		
 		
 		btnSpiel_starten = new JButton("Spiel starten");
 		btnSpiel_starten.addActionListener(new ActionListener() {
@@ -201,25 +198,31 @@ public class Spiel_GUI extends JFrame {
 	        	txtSpieler1.setEnabled(false);
 	        	txtSpieler2.setEnabled(false);
 	        	cbxAnzahlHoelzer.setEnabled(false);
+	        	lblgezogen.setText("");
 	        	lblWhleEineZahl.setText("Wähle eine Zahl von 1-3 zum Nehmen aus der Schachtel, falls noch genügend Hoelzer vorhanden sind.");
-	        	
+	    		panel_2.setVisible(true);
 			}
 		});
-		btnSpiel_starten.setBounds(314, 111, 134, 23);
+		btnSpiel_starten.setBounds(303, 111, 134, 23);
 		contentPane.add(btnSpiel_starten);
 		
-		lblZug = new JLabel("Spieler 2:");
+		lblZug = new JLabel("Spieler 2");
 		lblZug.setForeground(Color.RED);
-		lblZug.setBounds(10, 145, 100, 14);
-		contentPane.add(lblZug);
+		lblZug.setBounds(20, 0, 100, 14);
+		contentPane.add(panel_2);
+		panel_2.setLayout(null);
+		
+
+		panel_2.add(lblZug);
+		panel_2.setVisible(false);
 		
 		lblSchachtel = new JLabel("Anzahl Hoelzer: 40 ||||| ||||| ||||| ||||| ||||| ||||| ||||| |||||");
-		lblSchachtel.setBounds(10, 202, 280, 14);
-		contentPane.add(lblSchachtel);
+		lblSchachtel.setBounds(20, 72, 280, 14);
+		panel_2.add(lblSchachtel);
 		
 		lblgezogen = new JLabel("");
-		lblgezogen.setBounds(296, 202, 29, 14);
-		contentPane.add(lblgezogen);
+		lblgezogen.setBounds(296, 72, 29, 14);
+		panel_2.add(lblgezogen);
 		
 		btnZiehe_1 = new JButton("1");
 		btnZiehe_1.setToolTipText("Ziehe ein Streichholz.");
@@ -262,8 +265,8 @@ public class Spiel_GUI extends JFrame {
 */
 		
 
-		btnZiehe_1.setBounds(314, 168, 50, 23);
-		contentPane.add(btnZiehe_1);
+		btnZiehe_1.setBounds(314, 38, 50, 23);
+		panel_2.add(btnZiehe_1);
 		
 		//TODO: Button als Array?
 		btnZiehe_2 = new JButton("2");
@@ -276,8 +279,8 @@ public class Spiel_GUI extends JFrame {
 				wechselZug();
 			}
 		});
-		btnZiehe_2.setBounds(314, 202, 50, 23);
-		contentPane.add(btnZiehe_2);
+		btnZiehe_2.setBounds(314, 72, 50, 23);
+		panel_2.add(btnZiehe_2);
 		
 		btnZiehe_3 = new JButton("3");
 		btnZiehe_3.setToolTipText("Ziehe 3 Streichhölzer.");
@@ -289,8 +292,8 @@ public class Spiel_GUI extends JFrame {
 				wechselZug();
 			}
 		});
-		btnZiehe_3.setBounds(314, 234, 50, 23);
-		contentPane.add(btnZiehe_3);
+		btnZiehe_3.setBounds(314, 104, 50, 23);
+		panel_2.add(btnZiehe_3);
 		
 //		lblnimspielSpieler = new JLabel("<html><body><FONT COLOR=\"#FF0099\">Spieler 1</FONT> setzt die Anzahl der Hoelzer fest.<br>Anschließend werden abwechselnd 1-3 Hoelzer genommen.<br><b>Wer das letzte Holz zieht verliert.</b></body></html>");
 		lblnimspielSpieler = new JLabel("<html><body><b>Wer das letzte Holz zieht verliert.</b></body></html>");
@@ -330,12 +333,19 @@ public class Spiel_GUI extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setBounds(619, 168, -396, -35);
 		contentPane.add(panel);
+		panel_2.setBounds(-11, 143, 900, 153);
+		contentPane.add(panel_2);
+		panel_2.setLayout(null);
+		
+		lblWhleEineZahl = new JLabel("Wähle eine Zahl von 1-3 zum Nehmen aus der Schachtel, falls noch genügend Hoelzer vorhanden sind.");
+		lblWhleEineZahl.setBounds(100, 0, 706, 14);
+		panel_2.add(lblWhleEineZahl);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(-5, 0, 931, 15);
+		panel_2.add(panel_1);
 		panel_1.setBackground(SystemColor.info);
 		panel_1.setForeground(Color.BLACK);
-		panel_1.setBounds(-21, 140, 931, 23);
-		contentPane.add(panel_1);
 /*		
  //TODO: Was besser Combobox oder Spinner?
 		JSpinner spiAnzahlHoelzer = new JSpinner();
