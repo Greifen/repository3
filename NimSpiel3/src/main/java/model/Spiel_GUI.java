@@ -21,6 +21,8 @@ import java.beans.EventHandler;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.JList;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JSpinner;
 import java.awt.Color;
 import java.awt.SystemColor;
@@ -119,7 +121,17 @@ public class Spiel_GUI extends JFrame {
 		setBounds(100, 100, 738, 342);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		
+		JMenuBar bar = new JMenuBar();
+        // Erzeugung eines Objektes der Klasse JMenu
+        JMenu menu = new JMenu("Ich bin ein JMenu");
+        // Menü wird der Menüleiste hinzugefügt
+        bar.add(menu);
+        // Menüleiste wird für den Dialog gesetzt
+        setJMenuBar(bar);
 
+		
+		
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
